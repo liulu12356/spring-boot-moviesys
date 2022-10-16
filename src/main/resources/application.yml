@@ -1,0 +1,42 @@
+spring:
+
+
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/movies?rewriteBatchedStatements=true&serverTimezone=GMT%2B8&characterEncoding=utf8
+    username: root
+    password: root
+    hikari:
+      # 连接池中允许的最大连接数
+      # 官方推荐的主流配置
+      # max = (cpu核数 * 2) + 1 => N+1模式（适合单独运行数据库的服务器）
+      # JDK 的线程池用的是 N-1模式，需要保留一个线程跑主线程
+      maximum-pool-size: 11
+      # 最小闲置的连接数（一般配置数与max保持一致，可以防止由于连接数抖动带来的连接不稳定）
+      minimum-idle: 11
+
+
+
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+
+server:
+  port: 8080
+
+mybatis-plus:
+  mapper-locations:
+    #    - 路径1
+    #    - 路径2
+    # 可以配置多个路径(集合)
+    - classpath*:/mybatis/mapper/*.xml
+
+  config-location: classpath:/mybatis/mybatis-config.xml
+

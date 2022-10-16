@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+
+    <typeAliases>
+        <!--给类型取简单的别名-->
+        <typeAlias alias="Category" type="com.qf.moviesys.pojo.Category"/>
+        <typeAlias alias="Movie" type="com.qf.moviesys.pojo.Movie"/>
+        <typeAlias alias="User" type="com.qf.moviesys.pojo.User"/>
+        <typeAlias alias="Schedule" type="com.qf.moviesys.pojo.Schedule"/>
+        <typeAlias alias="MovieCategory" type="com.qf.moviesys.pojo.MovieCategory"/>
+        <typeAlias alias="Ticket" type="com.qf.moviesys.pojo.Ticket"/>
+    </typeAliases>
+
+</configuration>
