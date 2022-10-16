@@ -35,9 +35,9 @@ public class CustomerController {
        return  customerService.findTicketBySid(scheduleId);
     }
 
-    @PostMapping("/ticket/buy/{ticketIdList}")
+    @PostMapping("/ticket/buy/{ticketIdList}/{userId}")
     String BuyTicket(@PathVariable("ticketIdList") int [] ticketIdList
-            ,@RequestParam("userId") Integer userId){
+            ,@PathVariable("userId") Integer userId){
         System.out.println(userId);
         for (int i = 0; i < ticketIdList.length; i++) {
             customerService.updateTicket(ticketIdList[i],userId);
