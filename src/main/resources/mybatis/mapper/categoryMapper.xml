@@ -43,14 +43,14 @@
     <select id="findByName" parameterType="java.lang.String" resultType="Category">
         select * from category where name
         <if test="name != null ">
-         like #{name}
+         like #{name} and state=1
         </if>
     </select>
 
     <select id="findByKeywordPage" resultType="Category">
         select * from category where name
         <if test="keyword != null ">
-            like #{keyword}
+            like #{keyword} and state=1
         </if>
     </select>
 

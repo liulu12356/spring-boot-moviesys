@@ -14,10 +14,11 @@
         <!--给类型取简单的别名-->
         <typeAlias alias="Category" type="com.qf.moviesys.pojo.Category"/>
         <typeAlias alias="Movie" type="com.qf.moviesys.pojo.Movie"/>
-        <typeAlias alias="User" type="com.qf.moviesys.pojo.User"/>
+        <typeAlias alias="UserInfo" type="com.qf.moviesys.pojo.UserInfo"/>
         <typeAlias alias="Schedule" type="com.qf.moviesys.pojo.Schedule"/>
         <typeAlias alias="MovieCategory" type="com.qf.moviesys.pojo.MovieCategory"/>
         <typeAlias alias="Ticket" type="com.qf.moviesys.pojo.Ticket"/>
+        <typeAlias alias="Menu" type="com.qf.moviesys.pojo.Menu"/>
     </typeAliases>
 
 </configuration>

@@ -5,6 +5,7 @@ import com.qf.moviesys.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -40,5 +41,20 @@ class MovieSysApplicationTests {
     @Test
     void tset(){
         customerService.updateTicket(20,8);
+    }
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Test
+    void testPassword(){
+        String pwd = "admin";
+
+        for (int i = 0; i < 1; i++) {
+            String encode = passwordEncoder.encode(pwd);
+            System.out.println(encode);
+            System.out.println(passwordEncoder.matches(pwd, encode));
+            // abc =>xyz-xyz   opq
+        }
     }
 }
