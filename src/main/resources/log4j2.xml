@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <!-- 日志等级 debug info warn error -->
+            <PatternLayout pattern="%d{YYYY-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!--<Logger name="com.example" level="DEBUG">-->
+        <!--    <AppenderRef ref="Console"/>-->
+        <!--</Logger>-->
+        <!--&lt;!&ndash;<Logger name="org.mybatis" level="DEBUG"/>&ndash;&gt;-->
+        <!--<Logger name="org.apache.ibatis" level="DEBUG">-->
+        <!--    <AppenderRef ref="Console"/>-->
+        <!--</Logger>-->
+        <Logger name="com.example" level="debug"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="Roll"/>-->
+        </Root>
+    </Loggers>
+</Configuration>

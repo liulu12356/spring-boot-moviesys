@@ -17,9 +17,16 @@
     <select id="findScheduleTicket" resultType="Schedule">
         select * from schedule where movie_id=#{movieId} and status=1
     </select>
+    <select id="selectone" resultType="Category" >
+        select * from category where id=1;
+    </select>
 
     <update id="updateTicket">
         update ticket set status=0,buy_time=now(),user_id=#{userId},version=version+1 where tid=#{tid} and version=#{version}
+    </update>
+
+    <update id="updateTicketSync">
+        update  ticket set status=0,buy_time=now(),user_id=#{userId},version=version+1  where tid=#{tid}
     </update>
 
 

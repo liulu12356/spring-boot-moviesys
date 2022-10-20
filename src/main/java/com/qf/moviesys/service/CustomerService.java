@@ -12,7 +12,9 @@ public interface CustomerService {
 
     List<Ticket> findTicketBySid(Integer scheduleId);
 
-    void updateTicket(int ticketId, Integer userId);
+    boolean updateTicket(int ticketId, Integer userId) ;
 
-    List<Schedule> findScheduleTicket(Integer movieId);
+    List<Schedule>  findScheduleTicket(Integer movieId);
+
+    void updateTicketBySync(Integer tid,Integer userId);
 }

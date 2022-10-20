@@ -2,6 +2,7 @@ package com.qf.moviesys.dao;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.qf.moviesys.pojo.Category;
 import com.qf.moviesys.pojo.Movie;
 import com.qf.moviesys.pojo.Schedule;
 import com.qf.moviesys.pojo.Ticket;
@@ -15,9 +16,13 @@ public interface CustomerMapper extends BaseMapper<Object> {
 
     List<Ticket> findTicketBySid(Integer scheduleId);
 
-    void updateTicket(@Param("tid") int ticketId, @Param("userId") Integer userId, @Param("version") Integer version);
+    boolean updateTicket(@Param("tid") int ticketId, @Param("userId") Integer userId, @Param("version") Integer version);
 
     Integer findVersionByTid(int ticketId);
 
     List<Schedule> findScheduleTicket(Integer movieId);
+
+    Category selectone();
+
+     void  updateTicketSync(@Param("tid") int ticketId, @Param("userId") Integer userId);
 }
