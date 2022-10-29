@@ -7,4 +7,6 @@
     <select id="selectByUsername" resultType="com.qf.moviesys.pojo.UserInfo">
         select * from user where username=#{username}
     </select>
+
+
 </mapper>

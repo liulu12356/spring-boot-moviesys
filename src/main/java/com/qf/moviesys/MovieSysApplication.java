@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.qf.moviesys.dao")
 public class MovieSysApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(MovieSysApplication.class, args);
     }

@@ -5,6 +5,7 @@ import com.qf.moviesys.service.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Random;
@@ -17,11 +18,17 @@ class MovieSysApplicationTests {
     CustomerService customerService;
     @Autowired
     CustomerMapper customerMapper;
+    @Autowired
+    RedisTemplate<String, Object> redisTemplate;
 
     @Test
     void contextLoads() {
     }
 
+    @Test
+    void testRedis(){
+        System.out.println(redisTemplate);
+    }
     @Test
     void useCASTest() throws InterruptedException {
 

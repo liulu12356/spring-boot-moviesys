@@ -1,5 +1,12 @@
 spring:
 
+  redis:
+    cluster:
+      nodes:
+        - 10.41.250.12:7001
+        - 10.41.250.12:7002
+        - 10.41.250.12:7003
+      max-redirects: 3
 
   main:
     allow-bean-definition-overriding: true

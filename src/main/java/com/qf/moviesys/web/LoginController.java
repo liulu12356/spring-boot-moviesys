@@ -8,8 +8,10 @@ import com.qf.moviesys.pojo.Menu;
 import com.qf.moviesys.pojo.ResultVO;
 import com.qf.moviesys.pojo.UserInfo;
 import com.qf.moviesys.util.JwtUtils;
+import com.qf.moviesys.util.RedisTokenUtil;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +37,14 @@ public class LoginController {
     @Autowired
     ServletContext servletContext;
 
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    RedisTokenUtil redisTokenUtil;
+
+
+
 
 
 
@@ -54,9 +64,10 @@ public class LoginController {
 
             log.error(authentication.getPrincipal());
 
+
+
             // 根据认证通过的authentication包装token，返回客户端
             String token = wrapAndStoreToken(authentication);
-
             log.debug(token);
             return new ResultVO<>(200, "登录成功", token);
         } catch (AuthenticationException e) {
@@ -119,8 +130,11 @@ public class LoginController {
             String json = objectMapper.writeValueAsString(info);
 
             // 在容器中保留token
+
             // SecurityContextHolder.getContext().setAuthentication(authentication); // session.setAttribute(threadId, new UsernamePasswordToken());
             servletContext.setAttribute(info.getId().toString(), json);
+            System.out.println("json:--------"+json);
+            redisTokenUtil.setToken(JwtUtils.generateToken(json),info);
             return JwtUtils.generateToken(json);
         } catch (JsonProcessingException e) {
             log.error("JSON解析出现异常", e);

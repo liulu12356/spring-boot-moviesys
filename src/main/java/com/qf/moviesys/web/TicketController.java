@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.qf.moviesys.pojo.Movie;
 import com.qf.moviesys.pojo.Schedule;
 import com.qf.moviesys.service.MoviesService;
-import com.qf.moviesys.service.ScheduleService;
 import com.qf.moviesys.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class TicketController {
     TicketService ticketService;
 
 
-    public TicketController(MoviesService moviesService, ScheduleService scheduleService) {
+    public TicketController(MoviesService moviesService) {
         this.moviesService = moviesService;
 
     }

@@ -4,10 +4,9 @@ package com.qf.moviesys.security.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qf.moviesys.pojo.UserInfo;
-import com.qf.moviesys.util.JwtUtils;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
+import com.qf.moviesys.util.RedisTokenUtil;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +24,10 @@ import java.io.IOException;
 @Log4j2
 // @WebFilter("/????")
 public class JwtFilter extends OncePerRequestFilter { // 保证每一个请求指挥触发一次doFilter逻辑
+
+    @Autowired
+    RedisTokenUtil redisTokenUtil;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 首先从request中获取token信息
@@ -38,15 +41,17 @@ public class JwtFilter extends OncePerRequestFilter { // 保证每一个请求�
 
         // jwtToken证明是非登录请求，需要对jwtToken进行有效性检查
         try {
-            Jws<Claims> claims = JwtUtils.getClaims(jwtToken);
-            String subject = claims.getBody().getSubject();
-            ObjectMapper mapper = new ObjectMapper();
-            UserInfo info = mapper.readValue(subject, UserInfo.class);
+            // Jws<Claims> claims = JwtUtils.getClaims(jwtToken);
+            // String subject = claims.getBody().getSubject();
+            // ObjectMapper mapper = new ObjectMapper();
+            // UserInfo info = mapper.readValue(subject, UserInfo.class);
+            final UserInfo info = redisTokenUtil.get(jwtToken);
+
 
             Object token = request.getServletContext().getAttribute(info.getId().toString());
-            if (token == null) throw new RuntimeException("该用户已经注销了");
 
-            log.debug("doFilterInternal:{}", "认证通过...");
+
+            log.info("doFilterInternal:{}", "认证通过...");
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                     info.getUsername(),

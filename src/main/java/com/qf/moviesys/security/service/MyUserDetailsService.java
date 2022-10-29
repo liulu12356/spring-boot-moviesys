@@ -42,7 +42,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
             userInfo = userMapper.selectByUsername(username);
 
-            log.info("ssssss{}",userInfo);
             // FIXME 以后补充基于方法颗粒度的鉴权：适可而止（用户敏感信息、财务相关）
             userInfo.setMenus(Arrays.asList("类别信息管理", "电影基本信息管理"));
 
